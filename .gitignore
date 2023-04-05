@@ -1,0 +1,5 @@
+# Ignore files with a certain extension
+*.pt
+
+# Ignore specific files or directories
+newmodel.pt
