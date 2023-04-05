@@ -129,7 +129,7 @@ class SiameseNetwork(nn.Module):
         output2 = self.forward_once(input2)
         return output1, output2
 net = SiameseNetwork()
-net.load_state_dict(torch.load('C:/Users/lenovo/Desktop/Signature project/newmodel.pt'))
+net.load_state_dict(torch.load(r'D:\Signature-Verification\newmodel.pt'))
 IMAGEDIR = 'imagesnew/'
 app = FastAPI()
 
