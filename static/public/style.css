@@ -597,3 +597,20 @@ section{
  .zoom:hover {
    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
  }
+
+
+ .formOrient{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   padding: 10%;
+ }
+
+ .formUpload .div .form{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 50%;
+   margin: 0 auto;
+ }
