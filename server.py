@@ -161,7 +161,7 @@ async def UploadImage(mypic1:UploadFile=File(...)):
     resFlat = res.flatten()
     print(resFlat)
     
-    if resFlat[0] > 0.50:
+    if resFlat[1] > 0.50:
         return FileResponse('result.html')
     else:
         return FileResponse('forgedresult.html')
