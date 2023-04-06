@@ -140,21 +140,37 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def read_index():
     return FileResponse('index.html')
 @app.post("/uploadProfilePicture")
-async def UploadImage(mypic1:UploadFile=File(...)):
+async def UploadImage(mypic1:UploadFile=File(...), mypic2:UploadFile=File(...)):
     mypic1.filename = f"{uuid.uuid4()}.png"
-    contents = await mypic1.read()
+    mypic2.filename = f"{uuid.uuid4()}.png"
+    contents1 = await mypic1.read()
     with open(f"{IMAGEDIR}{mypic1.filename}","wb") as f:
-        f.write(contents)
+        f.write(contents1)
+    contents2 = await mypic2.read()
+    with open(f"{IMAGEDIR}{mypic2.filename}","wb") as f:
+        f.write(contents2)
     print(mypic1.filename)
+    print(mypic2.filename)
     image1_data = Image.open('imagesnew/' + mypic1.filename)
     image1_data = image1_data.convert("L")
+    image2_data = Image.open('imagesnew/' + mypic2.filename)
+    image2_data = image1_data.convert("L")
     transform=transforms.Compose(
         [transforms.Resize((105, 105)), transforms.ToTensor()]
     )
     image1_data = transform(image1_data)
     image1_data = image1_data.unsqueeze(0)
+    image2_data = transform(image2_data)
+    image2_data = image2_data.unsqueeze(0)
     ans = net.forward_once(image1_data)
     print(ans)
-    print(ans[0][1])
+    # print(ans[0][1])
+    res = ans.detach().numpy()
+    resFlat = res.flatten()
+    print(resFlat)
+    if resFlat[0] > 0.50:
+        return FileResponse('result.html')
+    else:
+        return FileResponse('forgedresult.html')
 
-    return str(ans[0][1])
+    # return str(ans[0][1])
