@@ -154,7 +154,18 @@ async def UploadImage(mypic1:UploadFile=File(...)):
     image1_data = transform(image1_data)
     image1_data = image1_data.unsqueeze(0)
     ans = net.forward_once(image1_data)
+    # print(ans)
+    # print(ans[0][1])
     print(ans)
-    print(ans[0][1])
+    res = ans.detach().numpy()
+    resFlat = res.flatten()
+    print(resFlat)
+    
+    if resFlat[0] > 0.50:
+        return FileResponse('result.html')
+    else:
+        return FileResponse('forgedresult.html')
+    # return str(resFlat)
+    # return str(ans[0][1])
+    
 
-    return str(ans[0][1])
