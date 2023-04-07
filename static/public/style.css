@@ -614,3 +614,21 @@ section{
    width: 50%;
    margin: 0 auto;
  }
+
+ @media only screen and (max-width: 768px) {
+   .uplaod-display {
+     width: 100%;
+     padding: 10px;
+     flex-direction: column;
+   }
+   
+   .formOrient {
+     margin-bottom: 10px;
+     padding: 0%;
+   }
+   
+   .upload-btn {
+     font-size: 14px;
+     padding: 8px 16px;
+   }
+ }
