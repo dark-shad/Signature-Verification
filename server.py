@@ -163,7 +163,7 @@ async def UploadImage(mypic1:UploadFile=File(...), mypic2:UploadFile=File(...)):
     image2_data = image2_data.unsqueeze(0)
     ans = net.forward(image1_data,image2_data)
     print(ans)
-    newans = ans[0]
+    newans = ans[1]
     res = newans.detach().numpy()
     resFlat = res.flatten()
     print(resFlat)
