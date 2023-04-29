@@ -1,5 +1,6 @@
 # Ignore files with a certain extension
 *.pt
 
+imagesnew/
 # Ignore specific files or directories
 newmodel.pt
